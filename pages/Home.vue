@@ -1,7 +1,5 @@
 <template>
   <div id="home" class="">
-
-
     <!-- Slider -->
     <div class="slideshow-container">
       <div
@@ -15,8 +13,6 @@
       <a class="prev" @click="plusSlides(-1)">❮</a>
       <a class="next" @click="plusSlides(1)">❯</a>
     </div>
-    
-     
     
     <!-- Home Feature -->
     <div class="homeFeaturedSec ">
@@ -171,171 +167,61 @@
       </div>
      </div>
 
-
-
-    <!-- <HeroSection
-      class="hero-section"
-      :title="hero.title"
-      :subtitle="hero.subtitle"
-      :button-text="hero.buttonText"
-      :link="hero.link"
-      :image-src="hero.imageSrc"
-      :image-width="hero.imageWidth"
-      :image-height="hero.imageHeight"
-      :nuxt-img-config="hero.imageConfig"
-      image-tag="nuxt-img"
-    />
-    <LazyHydrate when-visible>
-      <SfBannerGrid
-        :banner-grid="1"
-        class="banner-grid"
-      >
-        <template
-          v-for="item in banners"
-          #[item.slot]
-        >
-          <SfBanner
-            :key="item.slot"
-            :title="item.title"
-            :subtitle="item.subtitle"
-            :description="item.description"
-            :button-text="item.buttonText"
-            image-tag="nuxt-img"
-            :image="item.image"
-            :nuxt-img-config="item.imageConfig"
-            :class="item.class"
-          />
-        </template>
-      </SfBannerGrid>
-    </LazyHydrate>
-    <LoadWhenVisible>
-      <NewProducts
-        class="products"
-        :button-text="$t('See more')"
-        :title="$t('New Products')"
-        link="/women.html"
-      />
-    </LoadWhenVisible>
-    <LoadWhenVisible>
-      <CallToAction
-        :title="callToAction.title"
-        :button-text="callToAction.buttonText"
-        :description="callToAction.description"
-        image-tag="nuxt-img"
-        :image-src="callToAction.imageSrc"
-        :image-width="callToAction.imageWidth"
-        :image-height="callToAction.imageHeight"
-        :nuxt-img-config="callToAction.imageConfig"
-        class="call-to-action"
-      />
-    </LoadWhenVisible>
-    <LoadWhenVisible>
-      <InstagramFeed />
-    </LoadWhenVisible>
-    <LoadWhenVisible>
-      <MobileStoreBanner />
-    </LoadWhenVisible> -->
   </div>
 </template>
-<script lang="ts" type="module">
+
+<script lang="ts">
 import {
   defineComponent,
   ref,
-  useContext,
   onMounted,
-  useFetch,
+  onBeforeUnmount
 } from '@nuxtjs/composition-api';
-import LazyHydrate from 'vue-lazy-hydration';
-import { useCache, CacheTagPrefix } from '@vue-storefront/cache';
-import { SfBanner, SfBannerGrid } from '@storefront-ui/vue';
-import { CmsPage } from '~/modules/GraphQL/types';
-import HeroSection from '~/components/HeroSection.vue';
-import { getMetaInfo } from '~/helpers/getMetaInfo';
-import { useContent } from '~/composables';
-import LoadWhenVisible from '~/components/utils/LoadWhenVisible.vue';
 
 export default defineComponent({
   name: 'HomePage',
-  components: {
-    HeroSection,
-    LazyHydrate,
-    LoadWhenVisible,
-    SfBanner,
-    SfBannerGrid,
-    CallToAction: () => import(/* webpackPrefetch: true */ '~/components/CallToAction.vue'),
-    InstagramFeed: () => import(/* webpackPrefetch: true */ '~/components/InstagramFeed.vue'),
-    MobileStoreBanner: () => import(/* webpackPrefetch: true */ '~/components/MobileStoreBanner.vue'),
-    NewProducts: () => import(/* webpackPrefetch: true */ '~/components/NewProducts.vue'),
-  },
   data() {
     return {
-      slideIndex: 0,
+      slideIndex: 0 as number,
       slides: [
-        { image:"/homeSlider/Dhamaka-Offer-Banner.jpg" ,   caption: "Caption Text" },
+        { image: "/homeSlider/Dhamaka-Offer-Banner.jpg", caption: "Caption Text" },
         { image: "/homeSlider/02-Oleo-Rheuma-Gel.jpg", caption: "Caption Two" },
         { image: "/homeSlider/03-Cold-Shield.jpg", caption: "Caption Three" },
-        { image: "/homeSlider/04-Oleo-Rheuma-Oil.jpg", caption: "Caption Three" },
-        { image: "/homeSlider/05-Aqua-Mint.jpg", caption: "Caption Three" },
-        { image: "/homeSlider/06-Charcoal.jpg", caption: "Caption Three" },
-        { image: "/homeSlider/07-Dental-GEL.jpg", caption: "Caption Three" },
-        { image: "/homeSlider/08-Shifa.jpg", caption: "Caption Three" },
-        { image: "/homeSlider/09-Amla.jpg", caption: "Caption Three" },
-    
-      ],
+        { image: "/homeSlider/04-Oleo-Rheuma-Oil.jpg", caption: "Caption Four" },
+        { image: "/homeSlider/05-Aqua-Mint.jpg", caption: "Caption Five" },
+        { image: "/homeSlider/06-Charcoal.jpg", caption: "Caption Six" },
+        { image: "/homeSlider/07-Dental-GEL.jpg", caption: "Caption Seven" },
+        { image: "/homeSlider/08-Shifa.jpg", caption: "Caption Eight" },
+        { image: "/homeSlider/09-Amla.jpg", caption: "Caption Nine" },
+      ] as Array<{ image: string, caption: string }>,
 
-      autoSlideInterval: null 
+      autoSlideInterval: null as ReturnType<typeof setInterval> | null,
     };
   },
   methods: {
-    plusSlides(n) {
+    plusSlides(n: number) {
       this.slideIndex = (this.slideIndex + n + this.slides.length) % this.slides.length;
-    },
-    currentSlide(n) {
-      this.slideIndex = n;
     },
     startAutoSlide() {
       this.autoSlideInterval = setInterval(() => {
-        this.plusSlides(1); 
-      }, 4000); 
+        this.plusSlides(1);
+      }, 4000);
     },
     stopAutoSlide() {
-      clearInterval(this.autoSlideInterval);
+      if (this.autoSlideInterval) {
+        clearInterval(this.autoSlideInterval);
+      }
     }
   },
   mounted() {
-    this.startAutoSlide(); 
+    this.startAutoSlide();
   },
   beforeDestroy() {
-    this.stopAutoSlide(); 
-  },
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  setup() {
-    const { addTags } = useCache();
-    const { loadPage } = useContent();
-    const { app } = useContext();
-    const year = new Date().getFullYear();
-    const { isDesktop } = app.$device;
-
-    const page = ref<CmsPage | null>(null);
-
-    useFetch(async () => {
-      page.value = await loadPage({ identifier: 'home' });
-    });
-
-    onMounted(() => {
-      addTags([{ prefix: CacheTagPrefix.View, value: 'home' }]);
-    });
-    // @ts-ignore
-    return {
-      page,
-     
-    };
-  },
-  head() {
-    return getMetaInfo(this.page);
+    this.stopAutoSlide();
   },
 });
 </script>
+
 <style lang="scss" scoped>
 // --------------- Style start ---------------
 .mySlides {
@@ -690,6 +576,10 @@ h1 {
   }
 
  
+}
+
+.blogsMainSec  {
+  padding-bottom: 50px;
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 991px) {
