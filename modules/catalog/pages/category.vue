@@ -4,41 +4,67 @@
       v-if="isShowCms"
       :content="cmsContent"
     />
-    <CategoryBreadcrumbs />
+    
     <SkeletonLoader
       v-if="!activeCategoryName"
       height="57px"
       width="200px"
       margin="0"
     />
-    <SfHeading
+    
+    <!-- Display Category Image -->
+    <div v-if="activeCategoryImage" class="category-image">
+      <img :src="activeCategoryImage" :alt="activeCategoryName" />
+    </div>
+    <!-- <CategoryBreadcrumbs /> -->
+    <!-- <SfHeading
       v-else
       :level="2"
       :title="activeCategoryName"
       class="category-title"
-    />
+    /> -->
+
     <div class="category-layout">
+      <p class="category_breadcrumb"></p>
       <div class="sidebar column">
-        <CategoryFilters
+        <!-- <CategoryFilters
           v-if="isShowProducts"
           class="mobile-only"
           :is-visible="isFilterSidebarOpen"
           :cat-uid="routeData.uid"
           @close="toggleFilterSidebar"
           @reloadProducts="onReloadProducts"
-        />
+        /> -->
+        <div class="category_sidebar_inner">
+          <div class="category_list">
+            <h3>Categories</h3>
+            <ul>
+              <li><a href='#'>Oral Care</a></li>
+              <li><a href='#'>Hair Care</a></li>
+              <li><a href='#'>Joint Relief</a></li>
+              <li><a href='#'>Massage Oil</a></li>
+              <li><a href='#'>LooLoo Black Gold Kalonji Oil</a></li>
+              <li><a href='#'>LooLoo Oleo Shifa Medicated Oil</a></li>
+              <li><a href='#'>Cold & Headache</a></li>
+            </ul>
+          </div>
+          <a href="#" target="_blank" class="catalogue_img">
+            <img src='../../../static/category/download_catalogue.png' />
+          </a>
+        </div>
+        
       </div>
       <div
         ref="productContainerElement"
         class="main section column"
       >
-        <CategoryNavbar
+        <!-- <CategoryNavbar
           v-if="isShowProducts"
           :sort-by="sortBy"
           :pagination="pagination"
           :is-loading="$fetchState.pending"
           @reloadProducts="onReloadProducts"
-        />
+        /> -->
         <div class="products">
           <CategoryEmptyResults v-if="products.length === 0 && !$fetchState.pending && isShowProducts" />
 
@@ -195,6 +221,7 @@ export default defineComponent({
     const { addItemToCart } = useAddToCart();
 
     const categoryMeta = ref(null);
+    const categoryImage = ref<string | null>(null); // Declare and initialize categoryImage
 
     const addItemToWishlist = async (product: Product) => {
       await (isInWishlist({ product })
@@ -203,7 +230,9 @@ export default defineComponent({
     };
 
     const { activeCategory, loadCategoryTree } = useTraverseCategory();
+
     const activeCategoryName = computed(() => activeCategory.value?.name ?? '');
+    const activeCategoryImage = computed(() => activeCategory.value?.image ?? '');
 
     const categoryUid = routeData.uid;
 
@@ -211,6 +240,7 @@ export default defineComponent({
       if (!activeCategory.value) {
         await loadCategoryTree();
       }
+      // console.log('Active Category:', activeCategory.value);
 
       const [content, categoryMetaData] = await Promise.all([
         getContentData(categoryUid as string),
@@ -293,10 +323,12 @@ export default defineComponent({
       isShowProducts,
       cmsContent,
       activeCategoryName,
+      activeCategoryImage,
       routeData,
       doChangeItemsPerPage,
       productContainerElement,
       categoryMeta,
+      categoryImage, // Expose categoryImage
       onReloadProducts,
       goToPage,
     };
@@ -310,13 +342,83 @@ export default defineComponent({
 <style lang="scss" scoped>
 #category {
   box-sizing: border-box;
-
+  background: #F5F1DD;
   @include for-desktop {
-    max-width: 1240px;
+    max-width: 100%;
     margin: 0 auto;
   }
 }
+.category-image {
+    width: 100%;
+}
+.category-image img {
+    width: 100%;
+}
+.category_list h3 {
+    color: #9f9f9f;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.8;
+    padding: 10px 25px;
+    background-color: #eae9c9;
+    font-family: 'Montserrat';
+}
+.category_sidebar_inner {
+    position: sticky;
+    top: 0px;
+}
+.category_list ul {
+    background: #ffff;
+    margin: 0;
+    padding: 1px 25px 25px 25px;
+    list-style: none
+}
+.category_list ul li {
+  position: relative;
+  border: 1px solid rgba(133, 134, 140, 0.15);
+  border-left: 0px;
+  border-right: 0;
+  border-bottom: 0px;
+  margin: 9px 0 0;
+  padding-top: 10px;
+  padding-left: 23px;
+}
+.category_list ul li:first-child {
+  border-top:none;
+}
+.category_list ul li a {
+    line-height: 25px;
+    display: block;
+    color:#85868c;
+}
+.category_list ul li::before {
+  content: '';
+  position: absolute;
+  top: 17px;
+  left: 0px;
+  background-position: center;
+  background-size: auto;
+  background-image:url('../../../static/category/category_list_arrow.png');
+  width: 10px;
+  height: 10px;
+
+}
+
+a.catalogue_img {
+  width: 100%;
+  display: block;
+  margin-top: 10px;
+}
+
+a.catalogue_img img{
+  width: 100%;
+}
+
 .category-layout {
+  max-width: 1400px;
+  margin: auto;
+  box-sizing: border-box;
+  padding:70px 50px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -335,7 +437,8 @@ export default defineComponent({
     }
 
     &.sidebar {
-      max-width: 20%;
+      max-width: 24%;
+      padding-left: 0px;
     }
   }
 }

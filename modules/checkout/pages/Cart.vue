@@ -10,7 +10,7 @@
         key="my-cart"
         class="my-cart"
       >
-        <div class="content">
+        <div class="content">   <h1>zdgh</h1>
           <SfLoader :loading="loading">
             <transition
               name="sf-fade"
@@ -22,6 +22,7 @@
                     name="sf-fade"
                     tag="div"
                   >
+               
                     <SfCollectedProduct
                       v-for="(product, productIndex) in products"
                       :key="product.product.original_sku + productIndex"
@@ -29,9 +30,11 @@
                       data-testid="cart-sidebar-collected-product"
                       :image="cartGetters.getItemImage(product)"
                       :title="cartGetters.getItemName(product)"
+                     
                       :regular-price="
                         $fc(cartGetters.getItemPrice(product).regular)
-                      "
+                      " 
+                      price
                       :special-price="
                         cartGetters.productHasSpecialPrice(product)
                           ? cartGetters.getItemPrice(product).special &&

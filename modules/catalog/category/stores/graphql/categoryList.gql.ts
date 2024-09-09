@@ -2,6 +2,7 @@ const fragmentCategory = `
   fragment CategoryFields on CategoryTree {
     is_anchor
     name
+    image
     position
     product_count
     uid

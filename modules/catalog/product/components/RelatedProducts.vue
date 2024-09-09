@@ -2,7 +2,7 @@
   <ProductsCarousel
     v-if="!loading && products && products.length > 0"
     :products="products"
-    :title="$t('Match it with')"
+    :title="$t('Related products')"
   />
 </template>
 <script lang="ts">

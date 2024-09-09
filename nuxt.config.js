@@ -141,7 +141,7 @@ export default async () => {
       }],
     ],
     i18n: {
-      country: 'US',
+      country: 'IN',
       baseUrl: process.env.VSF_STORE_URL,
       strategy: 'prefix',
       locales: [
@@ -149,7 +149,7 @@ export default async () => {
           code: 'default',
           file: 'en.js',
           iso: 'en_US',
-          defaultCurrency: 'USD',
+          defaultCurrency: 'INR',
         },
         {
           code: 'german',
@@ -168,7 +168,7 @@ export default async () => {
           default: {
             currency: {
               style: 'currency',
-              currency: 'USD',
+              currency: 'INR',
               currencyDisplay: 'symbol',
             },
           },
@@ -283,8 +283,9 @@ export default async () => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     baseConfig.build.plugins.push(new GoogleFontsPlugin({
       fonts: [
-        { family: 'Raleway', variants: ['300', '400', '500', '600', '700', '400italic'], display: 'swap' },
-        { family: 'Roboto', variants: ['300', '400', '500', '700', '300italic', '400italic'], display: 'swap' },
+        { family: 'Oswald', variants: ['200','300', '400', '500', '600', '700', '800', '400italic'], display: 'swap' },
+        { family: 'Oxygen', variants: ['200','300', '400', '500','600','700', '800', '300italic', '400italic'], display: 'swap' },
+        { family: 'Montserrat', variants: ['200','300', '400', '500', '600', '700', '800', '400italic'], display: 'swap' },
       ],
       name: 'fonts',
       filename: 'fonts.css',

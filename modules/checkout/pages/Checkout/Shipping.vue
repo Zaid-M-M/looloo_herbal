@@ -161,7 +161,7 @@
             class="form__element form__element--half form__element--half-even form__select sf-select--underlined"
             :valid="!errors[0]"
             :error-message="$t(errors[0])"
-            @input="changeShippingDetails('region', $event)"
+            @input="handleRegionInputChange"
           >
             <SfSelectOption :value="''" />
             <SfSelectOption
@@ -173,6 +173,7 @@
             </SfSelectOption>
           </SfSelect>
         </ValidationProvider>
+    
         <ValidationProvider
           v-slot="{ errors }"
           name="country"
@@ -263,8 +264,11 @@
         :shipping-methods="shippingMethods"
         @submit="$router.push(localeRoute({ name: 'billing' }))"
       />
+    
     </form>
   </ValidationObserver>
+
+  
 </template>
 
 <script lang="ts">
@@ -320,6 +324,25 @@ export default defineComponent({
     ValidationObserver,
     UserShippingAddresses: () => import('~/modules/checkout/components/UserShippingAddresses.vue'),
     VsfShippingProvider: () => import('~/modules/checkout/components/VsfShippingProvider.vue'),
+  },
+  methods: {
+    handleRegionInputChange(value) {
+      // Call the original method to handle the change in shipping details
+      this.changeShippingDetails('region', value);
+
+      console.log('Selected Region:', value);
+
+      // Check if the selected value is 'MH' and show/hide the message
+      if (value === 'MH') {
+        console.log('In Maha');
+        document.getElementById('in_maha').style.display = 'block';
+        document.getElementById('out_maha').style.display = 'none';
+      } else {
+        console.log('Out Maha');
+        document.getElementById('out_maha').style.display = 'block';
+        document.getElementById('in_maha').style.display = 'none';
+      }
+    },
   },
   setup() {
     const router = useRouter();
@@ -453,6 +476,9 @@ export default defineComponent({
       }
       userShipping.value = loadedUserShipping;
       countries.value = loadedCountries;
+
+   
+
     });
 
     return {

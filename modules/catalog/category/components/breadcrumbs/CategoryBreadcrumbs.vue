@@ -31,7 +31,7 @@ export default defineComponent({
         await loadCategoryTree();
       }
 
-      breadcrumbs.value = categoryAncestors.value.slice(0, -1).map((category) => ({
+      breadcrumbs.value = categoryAncestors.value.slice(0, 1).map((category) => ({
         text: category.name,
         link: localePath(getCatLink(category)),
       }));

@@ -7,7 +7,7 @@
   >
     <template v-if="loading">
       <div
-        v-for="n in 4*3"
+        v-for="n in 3*2"
         :key="n"
         class="sf-product-card-horizontal card skeleton-container"
         data-testid="skeleton"

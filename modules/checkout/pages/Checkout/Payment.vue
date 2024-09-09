@@ -36,6 +36,7 @@
             }"
           />
         </SfTableData>
+        <h1>ZAID</h1>
         <SfTableData class="table__data table__description table__data">
           <div class="product-title">
             {{ cartGetters.getItemName(product) }}

@@ -755,6 +755,7 @@ export interface Categories {
   identifier: Scalars['String'];
   /** The payment method name */
   name: Scalars['String'];
+  image: Scalars['String'];
 }
 /** CategoryFilterInput defines the filters to be used in the search. A filter contains at least one attribute, a comparison operator, and the value that is being searched for. */
 export interface CategoryFilterInput {
@@ -764,6 +765,7 @@ export interface CategoryFilterInput {
   ids?: InputMaybe<FilterEqualTypeInput>;
   /** Filter by the display name of the category. */
   name?: InputMaybe<FilterMatchTypeInput>;
+  image?: Maybe<Scalars['String']>;
   /** Filter by the unique parent category ID for a `CategoryInterface` object. */
   parent_category_uid?: InputMaybe<FilterEqualTypeInput>;
   /** Filter by the unique parent category ID for a `CategoryInterface` object. */
@@ -800,7 +802,7 @@ export interface CategoryInterface {
    * @deprecated Use the `uid` argument instead.
    */
   id?: Maybe<Scalars['Int']>;
-  image?: Maybe<Scalars['String']>;
+  
   include_in_menu?: Maybe<Scalars['Int']>;
   is_anchor?: Maybe<Scalars['Int']>;
   landing_page?: Maybe<Scalars['Int']>;
@@ -811,6 +813,7 @@ export interface CategoryInterface {
   meta_title?: Maybe<Scalars['String']>;
   /** The display name of the category. */
   name?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
   /** Category Path. */
   path?: Maybe<Scalars['String']>;
   /** Category path in store. */
@@ -888,7 +891,6 @@ export interface CategoryTree extends CategoryInterface, RoutableInterface {
    * @deprecated Use the `uid` argument instead.
    */
   id?: Maybe<Scalars['Int']>;
-  image?: Maybe<Scalars['String']>;
   include_in_menu?: Maybe<Scalars['Int']>;
   is_anchor?: Maybe<Scalars['Int']>;
   landing_page?: Maybe<Scalars['Int']>;
@@ -899,6 +901,7 @@ export interface CategoryTree extends CategoryInterface, RoutableInterface {
   meta_title?: Maybe<Scalars['String']>;
   /** The display name of the category. */
   name?: Maybe<Scalars['String']>;
+  image?: Maybe<Scalars['String']>;
   /** Category Path. */
   path?: Maybe<Scalars['String']>;
   /** Category path in store. */
@@ -25714,12 +25717,14 @@ export declare type CategoryListQuery = {
     items?: Array<{
       product_count?: number | null | undefined;
       name?: string | null | undefined;
+      image?: string | null | undefined;
       uid: string;
       children?: Array<{
         include_in_menu?: number | null | undefined;
         is_anchor?: number | null | undefined;
         level?: number | null | undefined;
         name?: string | null | undefined;
+        image?: string | null | undefined;
         position?: number | null | undefined;
         product_count?: number | null | undefined;
         uid: string;
@@ -25730,6 +25735,7 @@ export declare type CategoryListQuery = {
           is_anchor?: number | null | undefined;
           level?: number | null | undefined;
           name?: string | null | undefined;
+          image?: string | null | undefined;
           position?: number | null | undefined;
           product_count?: number | null | undefined;
           uid: string;
@@ -25740,6 +25746,7 @@ export declare type CategoryListQuery = {
             is_anchor?: number | null | undefined;
             level?: number | null | undefined;
             name?: string | null | undefined;
+            image?: string | null | undefined;
             position?: number | null | undefined;
             product_count?: number | null | undefined;
             uid: string;
@@ -25760,6 +25767,7 @@ export declare type CategorySearchQuery = {
     is_anchor?: number | null | undefined;
     level?: number | null | undefined;
     name?: string | null | undefined;
+    image?: string | null | undefined;
     position?: number | null | undefined;
     product_count?: number | null | undefined;
     uid: string;

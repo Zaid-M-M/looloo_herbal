@@ -9,7 +9,7 @@
     >
       <SfCarousel
         data-cy="related-products-carousel"
-        :settings="{ peek: 16, breakpoints: { 1023: { peek: 0, perView: 2 } } }"
+        :settings="{ peek: 16, breakpoints: { 1023: { peek: 0, perView: 4 } } }"
         class="carousel"
       >
         <SfCarouselItem

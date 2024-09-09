@@ -93,8 +93,12 @@ export const getTotals = (cart: Cart): Totals => {
   if (!cart || !cart.prices) return {} as Totals;
 
   const subtotal = cart.prices.subtotal_including_tax.value;
+  // const subtotal = cart.prices.subtotal_including_tax.value;
+  // const subtotal_testing = cart.prices.subtotal_excluding_tax.value;
+  
   return {
-    total: cart.prices.grand_total.value,
+    // total: cart.prices.grand_total.value,
+    total: cart.prices.subtotal_including_tax.value,
     subtotal: cart.prices.subtotal_including_tax.value,
     special: (cart.prices.discounts) ? subtotal - calculateDiscounts(cart.prices.discounts) : subtotal,
   } as Totals;
@@ -174,6 +178,13 @@ export interface CartGetters extends CartGettersBase<Cart, CartItemInterface> {
   getConfiguredVariant(product: ConfigurableCartItem): ProductInterface | null;
 }
 
+
+export const getTaxAmount = (cart: Cart): number => {
+  if (!cart || !cart.prices) return 0;
+
+  return cart.prices.applied_taxes?.reduce((acc, tax) => acc + tax.amount.value, 0) || 0;
+};
+
 const cartGetters: CartGetters = {
   getAppliedCoupon,
   getAvailablePaymentMethods,
@@ -192,6 +203,7 @@ const cartGetters: CartGetters = {
   getTotalItems,
   getTotals,
   getDiscountAmount,
+  getTaxAmount,
   productHasSpecialPrice,
   getStockStatus,
   getConfiguredVariant,

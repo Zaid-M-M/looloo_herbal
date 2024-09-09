@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class='menubar'>
     <SfHeader
       class="sf-header--has-mobile-search"
       :class="{ 'header-on-top': isSearchOpen }"
@@ -218,6 +218,38 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.menubar header.sf-header__header {
+    max-width: 1400px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 50px;
+    height: 100px;
+}
+.menubar .header-navigation a {
+  padding: 0px;
+    font-size: 14px;
+    color: #978d4b;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    margin: 0 0 0 30px;
+    flex: auto;
+}
+.menubar .sf-header-navigation-item__item a:last-child {
+  display: none;
+}
+.menubar .sf-input.sf-search-bar.sf-header__search {
+  display: none;
+}
+.menubar .sf-header__icons button {
+    margin: 0 0 0 20px;
+}
+.menubar .header-navigation a span {
+    margin: 0 0 0 5px;
+    --icon-color:#978d4b;
+}
+</style>
 
 <style lang="scss" scoped>
 .sf-header {

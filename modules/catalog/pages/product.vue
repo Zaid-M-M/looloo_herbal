@@ -1,31 +1,39 @@
 <template>
-  <div id="product">
-    <div>
-      <SfBreadcrumbs
-        class="breadcrumbs desktop-only"
-        :breadcrumbs="breadcrumbs"
-      />
-      <component
-        :is="renderer"
-        v-if="product"
-        :product="product"
-        :is-fetching="loading"
-        @fetchProduct="fetchProduct($event.query)"
-      />
-      <ProductSkeleton v-else />
-      <LoadWhenVisible>
-        <RelatedProducts />
+  <div class="product_main">
+    <div id="product">
+      <div>
+
+        <div class="offer_img_dv">
+          <img src='../../../static/productpage/700-offer-small.jpg'/>
+        </div>
+        
+        <!-- <SfBreadcrumbs
+          class="breadcrumbs desktop-only"
+          :breadcrumbs="breadcrumbs"
+        /> -->
+        <component
+          :is="renderer"
+          v-if="product"
+          :product="product"
+          :is-fetching="loading"
+          @fetchProduct="fetchProduct($event.query)"
+        />
+        <ProductSkeleton v-else />
+        <LoadWhenVisible>
+          <RelatedProducts />
+        </LoadWhenVisible>
+        <!-- <LoadWhenVisible>
+          <UpsellProducts />
+        </LoadWhenVisible> -->
+      </div>
+      
+      <!-- <LoadWhenVisible>
+        <InstagramFeed />
       </LoadWhenVisible>
       <LoadWhenVisible>
-        <UpsellProducts />
-      </LoadWhenVisible>
+        <MobileStoreBanner />
+      </LoadWhenVisible> -->
     </div>
-    <LoadWhenVisible>
-      <InstagramFeed />
-    </LoadWhenVisible>
-    <LoadWhenVisible>
-      <MobileStoreBanner />
-    </LoadWhenVisible>
   </div>
 </template>
 <script lang="ts">
@@ -157,12 +165,18 @@ export default defineComponent({
 });
 </script>
 <style lang="scss" scoped>
+.product_main {
+    background: #F5F1DD;
+}
+.offer_img_dv {
+  text-align: center;
+}
 #product {
   box-sizing: border-box;
   @include for-desktop {
-    max-width: 1272px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 50px;
   }
 }
 

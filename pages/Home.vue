@@ -1,6 +1,179 @@
 <template>
-  <div id="home">
-    <HeroSection
+  <div id="home" class="">
+
+
+    <!-- Slider -->
+    <div class="slideshow-container">
+      <div
+        v-for="(slide, index) in slides"
+        :key="index"
+        class="mySlides fade"
+        v-show="index === slideIndex"
+      >
+        <img :src="slide.image" style="width:100%" class="slideImg">
+      </div>
+      <a class="prev" @click="plusSlides(-1)">❮</a>
+      <a class="next" @click="plusSlides(1)">❯</a>
+    </div>
+    
+     
+    
+    <!-- Home Feature -->
+    <div class="homeFeaturedSec ">
+        <h1 class="homeFeatureHeading">Featured Product Range</h1>
+
+
+        <div class="featureProCon">
+            <div class="featureProduct ">
+                <div class="proDetail">
+                    <div class="left ">
+                        <img src="https://loolooherbal.in/wp-content/uploads/2019/05/LooLoo_herbal_Dental_care_ribbon.png" alt="">
+                        <div class="xyz">
+                            <h2>
+                                Herbal Dental Gels & Powders
+                            </h2>
+                            <p>Looloo offer a range which is 100% vegetarian. The tooth products do not contain components, such as calcium, derived from animals.  
+                            </p>
+                            <button>Shop Now</button>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <img src="https://loolooherbal.in/wp-content/uploads/2021/10/Looloo_herbal_Featured_Product_Range_oral_care_.png" alt="" >
+                    </div>
+                </div>
+            </div>
+            <div class="featureProduct ">
+                <div class="proDetail">
+                    <div class="left ">
+                        <img src="https://loolooherbal.in/wp-content/uploads/2019/06/LooLoo_herbal_oleo_rehuma_ribbon.png" alt="">
+                        <div class=" xyz">
+                            <h2>
+                              Oleo Rheuma
+                            </h2>
+                            <p>Looloo Oleo Rheuma, a herbal liniment, not only takes over the pain, but also heals the inflamed joints and muscles. 
+                            </p>
+                            <button>Shop Now</button>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <img src="https://loolooherbal.in/wp-content/uploads/2021/10/Looloo_herbal_Featured_Product_Range_Oleo_rehuma.png" alt="" >
+                    </div>
+                </div>
+            </div>
+            <div class="featureProduct ">
+                <div class="proDetail">
+                    <div class="left ">
+                        <img src="https://loolooherbal.in/wp-content/uploads/2019/06/LooLoo_herbal_oleo_rehuma_ribbon.png" alt="">
+                        <div class=" xyz">
+                            <h2>
+                              revitalise your hair
+                            </h2>
+                            <p>Mumtaz Amla Hair Oil: Contains the natural goodness of amla (L. Phyllanthus emblica) Jasmine and Lemon. 
+                            </p>
+                            <button>Shop Now</button>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <img src="https://loolooherbal.in/wp-content/uploads/2021/10/Looloo_herbal_Featured_Product_Range_revitalise_your_hair_2.png" alt="" >
+                    </div>
+                </div>
+            </div>
+            <div class="featureProduct ">
+                <div class="proDetail">
+                    <div class="left ">
+                        <img src="https://loolooherbal.in/wp-content/uploads/2019/06/LooLoo_herbal_oleo_rehuma_ribbon.png" alt="">
+                        <div class=" xyz">
+                            <h2>
+                              Oleo Cold Shield
+                            </h2>
+                            <p>Looloo Oleo Cold Shield contains the valuable extracts of Kalonji and other essential oils to give instant relief from cold and headache.  
+                            </p>
+                            <button>Shop Now</button>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <img src="https://loolooherbal.in/wp-content/uploads/2021/10/looloohearble_home_cold_shield.png" alt="" >
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+
+    </div>
+
+
+    <!-- Free Shipping Img -->
+    <div class="freeShip">
+      <img src="https://loolooherbal.in/wp-content/uploads/2024/03/Rs-700-Offer-Big-Banner.jpg" alt="">
+    </div>
+
+
+
+    <!-- LooLoo Herbal Commitment -->
+     <div class="commitmentCon">
+      <div class="container">
+
+        <h1>LooLoo Herbal Commitment</h1>
+        <p>LooLoo Herbal is a progressive, research based health and wellness organisation.
+         <br>We develop innovative and natural products that are imbibed with the essence of Unani medicine.</p>
+          <div class="">
+            <img src="https://loolooherbal.in/wp-content/uploads/2021/04/LooLoo_herble_badges_hp.png" alt="">  
+          </div>
+
+      </div>
+     </div>
+
+
+
+    <!-- Our Blogs -->
+     <div class="blogsMainSec ">
+      <h1>Our Blogs</h1>
+      <div class="container">
+        <div class="blogsCon">
+          <div class="singleBlog">
+
+            <div class="blogImgCon">
+              <img src="https://loolooherbal.in/blog/wp-content/uploads/2021/09/LooLoo_herble_Is_Working_from_Home_Cover_image.jpg" alt="">
+            </div>
+            <div class="blogContent">
+              <h2 class="blogHeading">Is Working from Home Damaging Your Body?</h2>
+              <p class="blogPara">This pandemic has been a true test of patience. The possibility of resurrection of the normal, simple, pleasant way of life seems to be far-fetched with the increasing chaos and uncertainty.</p>
+              <p><a href="">Read More</a></p>
+
+            </div>
+          </div>
+          <div class="singleBlog">
+
+            <div class="blogImgCon">
+              <img src="https://loolooherbal.in/blog/wp-content/uploads/2021/03/LooLoo_herble_ZULF_main_image_blog.jpg" alt="">
+            </div>
+            <div class="blogContent">
+              <h2 class="blogHeading">Why It’s Important to Stay Cool in Summers</h2>
+              <p class="blogPara">This summer, dodge the intolerant heat with LooLoo Roshan-e-Zulf. Its ultra-cool minty freshness is a quick getaway from unbearable heat to a refreshing burst of ice.</p>
+              <p><a href="">Read More</a></p>
+
+            </div>
+          </div>
+          <div class="singleBlog">
+
+            <div class="blogImgCon">
+              <img src="https://loolooherbal.in/blog/wp-content/uploads/2021/02/LooLoo_herble_cold_shield_header_image.jpg" alt="">
+            </div>
+            <div class="blogContent">
+              <h2 class="blogHeading">Treating Common Cold in Winters</h2>
+              <p  class="blogPara" >Breathe easy with a blast of freshness with LooLoo Oleo Cold Shield Roll-On Oil – Unique amalgamation of essential oils that grants Instant Relief from congestion and headache.</p>
+              <p><a href="">Read More</a></p>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+     </div>
+
+
+
+    <!-- <HeroSection
       class="hero-section"
       :title="hero.title"
       :subtitle="hero.subtitle"
@@ -61,7 +234,7 @@
     </LoadWhenVisible>
     <LoadWhenVisible>
       <MobileStoreBanner />
-    </LoadWhenVisible>
+    </LoadWhenVisible> -->
   </div>
 </template>
 <script lang="ts" type="module">
@@ -94,6 +267,47 @@ export default defineComponent({
     MobileStoreBanner: () => import(/* webpackPrefetch: true */ '~/components/MobileStoreBanner.vue'),
     NewProducts: () => import(/* webpackPrefetch: true */ '~/components/NewProducts.vue'),
   },
+  data() {
+    return {
+      slideIndex: 0,
+      slides: [
+        { image:"/homeSlider/Dhamaka-Offer-Banner.jpg" ,   caption: "Caption Text" },
+        { image: "/homeSlider/02-Oleo-Rheuma-Gel.jpg", caption: "Caption Two" },
+        { image: "/homeSlider/03-Cold-Shield.jpg", caption: "Caption Three" },
+        { image: "/homeSlider/04-Oleo-Rheuma-Oil.jpg", caption: "Caption Three" },
+        { image: "/homeSlider/05-Aqua-Mint.jpg", caption: "Caption Three" },
+        { image: "/homeSlider/06-Charcoal.jpg", caption: "Caption Three" },
+        { image: "/homeSlider/07-Dental-GEL.jpg", caption: "Caption Three" },
+        { image: "/homeSlider/08-Shifa.jpg", caption: "Caption Three" },
+        { image: "/homeSlider/09-Amla.jpg", caption: "Caption Three" },
+    
+      ],
+
+      autoSlideInterval: null 
+    };
+  },
+  methods: {
+    plusSlides(n) {
+      this.slideIndex = (this.slideIndex + n + this.slides.length) % this.slides.length;
+    },
+    currentSlide(n) {
+      this.slideIndex = n;
+    },
+    startAutoSlide() {
+      this.autoSlideInterval = setInterval(() => {
+        this.plusSlides(1); 
+      }, 4000); 
+    },
+    stopAutoSlide() {
+      clearInterval(this.autoSlideInterval);
+    }
+  },
+  mounted() {
+    this.startAutoSlide(); 
+  },
+  beforeDestroy() {
+    this.stopAutoSlide(); 
+  },
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   setup() {
     const { addTags } = useCache();
@@ -103,102 +317,6 @@ export default defineComponent({
     const { isDesktop } = app.$device;
 
     const page = ref<CmsPage | null>(null);
-    const hero = ref({
-      title: app.i18n.t('Colorful summer dresses are already in store'),
-      subtitle: app.i18n.t('SUMMER COLLECTION {year}', { year }),
-      buttonText: app.i18n.t('Learn more'),
-      imageSrc: '/homepage/bannerB.webp',
-      imageWidth: isDesktop ? 1240 : 328,
-      imageHeight: isDesktop ? 400 : 224,
-      imageConfig: {
-        fit: 'cover',
-        format: 'webp',
-      },
-      link: '/women.html',
-    });
-    const banners = ref([
-      {
-        slot: 'banner-A',
-        subtitle: app.i18n.t('Dresses'),
-        title: app.i18n.t('Cocktail & Party'),
-        description: app.i18n.t(
-          'Find stunning women\'s cocktail dresses and party dresses. Stand out in lace and metallic cocktail dresses from all your favorite brands.',
-        ),
-        buttonText: app.i18n.t('Shop now'),
-        image: {
-          mobile:
-            '/homepage/bannerB.webp',
-          desktop:
-            '/homepage/bannerF.webp',
-        },
-        imageConfig: {
-          fit: 'cover',
-          width: isDesktop ? 332 : 328,
-          height: isDesktop ? 840 : 343,
-          format: 'webp',
-        },
-        class: 'sf-banner--slim desktop-only',
-        link: '/women/women-clothing-skirts',
-      },
-      {
-        slot: 'banner-B',
-        subtitle: app.i18n.t('Dresses'),
-        title: app.i18n.t('Linen Dresses'),
-        description: app.i18n.t(
-          'Find stunning women\'s cocktail dresses and party dresses. Stand out in lace and metallic cocktail dresses from all your favorite brands.',
-        ),
-        buttonText: app.i18n.t('Shop now'),
-        image: '/homepage/bannerE.webp',
-        imageConfig: {
-          fit: 'cover',
-          width: isDesktop ? 496 : 328,
-          height: isDesktop ? 840 : 343,
-          format: 'webp',
-        },
-        class: 'sf-banner--slim banner-central desktop-only',
-        link: '/women/women-clothing-dresses',
-      },
-      {
-        slot: 'banner-C',
-        subtitle: app.i18n.t('T-Shirts'),
-        title: app.i18n.t('The Office Life'),
-        image: '/homepage/bannerC.webp',
-        imageConfig: {
-          fit: 'cover',
-          width: isDesktop ? 332 : 328,
-          height: isDesktop ? 400 : 343,
-          format: 'webp',
-        },
-        class: 'sf-banner--slim banner__tshirt',
-        link: '/women/women-clothing-shirts',
-      },
-      {
-        slot: 'banner-D',
-        subtitle: app.i18n.t('Summer Sandals'),
-        title: app.i18n.t('Eco Sandals'),
-        image: '/homepage/bannerG.webp',
-        imageConfig: {
-          fit: 'cover',
-          width: isDesktop ? 332 : 328,
-          height: isDesktop ? 400 : 343,
-          format: 'webp',
-        },
-        class: 'sf-banner--slim',
-        link: '/women/women-shoes-sandals',
-      },
-    ]);
-    const callToAction = ref({
-      title: app.i18n.t('Subscribe to Newsletters'),
-      description: app.i18n.t('Be aware of upcoming sales and events. Receive gifts and special offers!'),
-      buttonText: app.i18n.t('Subscribe'),
-      imageSrc: '/homepage/newsletter.webp',
-      imageWidth: isDesktop ? 1240 : 400,
-      imageHeight: isDesktop ? 202 : 200,
-      imageConfig: {
-        fit: 'cover',
-        format: 'webp',
-      },
-    });
 
     useFetch(async () => {
       page.value = await loadPage({ identifier: 'home' });
@@ -207,13 +325,10 @@ export default defineComponent({
     onMounted(() => {
       addTags([{ prefix: CacheTagPrefix.View, value: 'home' }]);
     });
-
     // @ts-ignore
     return {
-      banners,
-      callToAction,
-      hero,
       page,
+     
     };
   },
   head() {
@@ -221,8 +336,395 @@ export default defineComponent({
   },
 });
 </script>
-
 <style lang="scss" scoped>
+// --------------- Style start ---------------
+.mySlides {
+  /* display: none; */
+  height: 500px;
+}
+.mySlides img {
+  vertical-align: middle;
+  height: 100%;
+  object-fit: cover;
+}
+/* Slideshow container */
+.slideshow-container {
+  max-width: 100%;
+  position: relative;
+  margin: auto;
+}
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .prev,
+  .next,
+  .text {
+    font-size: 11px;
+  }
+}
+.silder {
+
+  img{
+    width: 100%;
+    height: auto;
+  }
+}
+
+.container {
+  max-width: 1400px;
+  padding: 0 44px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    font-family: Montserrat, Helvetica, Arial, Verdana, sans-serif;
+    color: rgb(161, 142, 17);
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 35px;
+    margin: 33px 0;
+  }
+
+.homeFeaturedSec {
+  max-width: 1400px;
+  padding: 0 44px;
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  h1{
+    margin: 0;
+    padding: 33px 0;
+  }
+
+ 
+}
+
+
+
+.proDetail {
+  height: 330px;
+  background-color: #fff;
+  box-shadow: 0px 0px 18px -8px rgba(0,0,0,0.41);
+}
+
+.featureProCon {
+  .featureProduct {
+    height: 400px;
+  }
+}
+
+.proDetail .left h2{
+  font-family: 'Oswald', sans-serif;
+    line-height: 38px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+
+.xyz {
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+
+  button{
+    border-width: 0px;
+    color: #ffffff;
+    background: #05923f !important;
+    padding: 9px 15px 9px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    border-radius: 4px;
+  }
+}
+
+.b{
+  border: 1px solid red;
+}
+
+
+.freeShip img{
+  height: auto;
+  width: 100%;
+}
+
+
+.commitmentCon{
+  background-image: url('https://loolooherbal.in/wp-content/uploads/2019/05/LooLoo_herbal_benefis_bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+    background-color: rgba(0, 0, 0, 0);
+    background-attachment: scroll;
+    height: 358px;
+  
+}
+
+.commitmentCon .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+
+    p{
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+
+    h1{
+      margin: 0 0 0 20px;
+    }
+    
+}
+
+
+// blog
+
+.blogsMainSec{
+  background-color: #ffffff;
+
+  h1{
+    margin: 0;
+    padding: 44px 0;
+  }
+
+
+
+
+  .blogsCon{
+    display: flex;
+    justify-content: space-between;
+
+
+
+    .singleBlog{
+      width: 380px;
+      
+
+
+      p{
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 26px;
+        color: #6d6b5d ;
+      }
+
+      .blogImgCon {
+        height: auto;
+
+        img{
+          width: 100%;
+          height: auto;
+        }
+      }
+
+
+      .blogContent{
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+       
+
+
+        p{
+          margin: 0;
+        }
+
+        .blogPara{
+          margin: 10px 0;
+        }
+     
+
+
+
+        a{
+          font-weight: 600;
+          color: #a18e11;
+          border-bottom: 1px solid ;
+        }
+      }
+
+      
+
+      .blogHeading{
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 30px;
+        color: rgb(161, 142, 17);
+        font-family: "Montserrat", sans-serif;
+      }
+    }
+  }
+}
+
+
+
+
+@media only screen and (min-device-width: 768px) {
+  .featureProCon {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .featureProduct {
+      width: 48%;
+      height: 365px;
+      margin-bottom: 35px;
+      position: relative;
+    }
+  }
+
+  .proDetail {
+    display: flex;
+    justify-content: space-between;
+    
+    
+
+    .left {
+      width: 50%;
+      padding-top: 20px;
+
+    }
+
+    .right {
+      width: 50%;
+      display: flex;
+      align-items: end;
+      justify-content: end;
+
+
+      img {
+        position: absolute;
+        top: auto;
+        bottom: 0;
+        right: 15px;
+      }
+    }
+  }
+}
+
+
+
+// --------------- Style End -----------------
+
+
+
+
+// Media Query 
+
+
+
+
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 767px) {
+  .homeFeaturedSec{
+    padding: 0;
+  }
+
+  .featureProduct{
+    margin: 20px 0px;
+    border: 1px solid red;
+    height: auto;
+  }
+
+
+
+  .proDetail{
+    height: auto;
+    padding: 20px 0px;
+  }
+
+  .right{
+    height: 275px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+  }
+
+
+  .xyz{
+    padding-bottom: 0px;
+  }
+
+
+  .featureProCon .featureProduct{
+    height: auto;
+  }
+
+ 
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 991px) {
+  // Styles for Tablet (768px devices)
+}
+
+
+@media only screen and (min-device-width: 992px) and (max-device-width: 1199px) {
+  // Styles for Laptop (1024px devices)
+}
+
+
+@media only screen and (min-device-width: 1200px) and (max-device-width: 1280px) {
+  // Styles for devices between 1200px and 1280px
+}
+
+@media only screen and (min-device-width: 1281px) and (max-device-width: 1369px) {
+  // Styles for devices between 1281px and 1369px
+}
+
+@media only screen and (min-device-width: 1370px) and (max-device-width: 1440px) {
+  // Styles for devices between 1370px and 1440px
+}
+
+@media only screen and (min-device-width: 1441px) and (max-device-width: 1536px) {
+  // Styles for devices between 1441px and 1536px
+}
+
+@media only screen and (min-device-width: 1537px) and (max-device-width: 1600px) {
+  
+}
+
+
+
+
 .article-meta h4 a {
   color: #111111;
   font-weight: 600;
@@ -248,7 +750,7 @@ export default defineComponent({
   box-sizing: border-box;
   padding: 0 var(--spacer-sm);
   @include for-desktop {
-    max-width: 1240px;
+    max-width: 100%;
     padding: 0;
     margin: 0 auto;
   }

@@ -18,6 +18,12 @@
         :value="$fc(totals.subtotal)"
         :class="['sf-property--full-width', 'sf-property--large property']"
       />
+ 
+      <SfProperty
+        :name="$t('Tax')"
+        :value="taxAmount.toFixed(2)"
+        class="sf-property--full-width sf-property--large property"
+      />
       <SfProperty
         v-if="hasDiscounts"
         :name="$t('Discount')"
@@ -36,6 +42,14 @@
         :value="$fc(totals.total)"
         class="sf-property--full-width sf-property--large property-total"
       />
+
+      <p class="gst_info" id='out_maha'>
+        (includes  <span>₹{{ taxAmount.toFixed(2) }} </span> IGST )
+      </p>
+      <p class="gst_info" id="in_maha">
+        (includes <span>₹{{ cgst_igst_amount.toFixed(2) }}</span> CGST, &nbsp; <span>₹{{ cgst_igst_amount.toFixed(2) }}</span> SGST)
+      </p>
+
     </div>
     <CouponCode class="highlighted" />
     <div class="highlighted">
@@ -95,6 +109,12 @@ export default defineComponent({
     const discount = computed(() => -cartGetters.getDiscountAmount(cart.value));
     const hasDiscounts = computed(() => Math.abs(discount.value) > 0);
     const selectedShippingMethod = computed(() => cartGetters.getSelectedShippingMethod(cart.value));
+    const taxAmount = computed(() => cartGetters.getTaxAmount(cart.value)); // Add this line to get the tax amount
+
+    const cgst_igst_amount = computed(() => {
+      const tax = taxAmount.value;
+      return typeof tax === 'number' ? tax / 2 : 0;
+    });
 
     return {
       cart,
@@ -110,11 +130,24 @@ export default defineComponent({
       getShippingMethodPrice,
       characteristics: CHARACTERISTICS,
       selectedShippingMethod,
+      taxAmount,
+      cgst_igst_amount,
     };
   },
 });
 </script>
-
+<style>
+.gst_info {
+    display: none;
+    margin: 0;
+    margin-top: 10px;
+    font-size: 13px;
+    font-family: 'Raleway';
+}
+.gst_info span {
+    font-size: 20px;
+}
+</style>
 <style lang="scss" scoped>
 .highlighted {
   box-sizing: border-box;

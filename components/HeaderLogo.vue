@@ -3,7 +3,7 @@
     :to="localePath('/')"
     class="sf-header__logo"
   >
-    <SfImage
+    <!-- <SfImage
       v-if="logoSrc"
       image-tag="nuxt-img"
       :src="logoSrc"
@@ -18,7 +18,8 @@
       :label="$t('Vue Storefront Next')"
       width="35"
       height="34"
-    />
+    /> -->
+    <img src="../static/header/looloo_logo.gif"/>
   </nuxt-link>
 </template>
 

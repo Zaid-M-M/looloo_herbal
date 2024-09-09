@@ -13,7 +13,7 @@
         :enable-zoom="true"
         image-tag="nuxt-img"
         thumb-image-tag="nuxt-img"
-        class="product__gallery"
+        class="product__gallery zaid_g"
         :nuxt-img-config="{
           fit: 'cover',
         }"
@@ -41,6 +41,7 @@
           :regular="$fc(productPrice)"
           :special="productSpecialPrice && $fc(productSpecialPrice)"
         />
+
         <div>
           <div class="product__rating">
             <SfRating
@@ -71,29 +72,31 @@
         </div>
       </div>
       <div v-if="product !== null ">
-        <HTMLContent
-          v-if="productShortDescription"
-          :content="productShortDescription"
-          tag="p"
-          class="product__description desktop-only"
-        />
         <SfAddToCart
           v-model="qty"
           v-e2e="'product_add-to-cart'"
-          :disabled="isCartLoading || !canAddToCart(product, qty) || isFetching"
+        
           class="product__add-to-cart"
           @click="addItem({ product, quantity: parseInt(qty) })"
         >
           <template #add-to-cart-btn>
             <SfButton
               class="sf-add-to-cart__button"
-              :disabled="isCartLoading || !canAddToCart(product, qty) || isFetching"
+        
               @click="addItem({ product, quantity: parseInt(qty) })"
             >
               {{ $t('Add to cart') }}
             </SfButton>
           </template>
         </SfAddToCart>
+
+        <HTMLContent
+          v-if="productShortDescription"
+          :content="productShortDescription"
+          tag="p"
+          class="product__description desktop-only"
+        />
+        
         <SfAlert
           :style="{ visibility: !!addToCartError ? 'visible' : 'hidden'}"
           class="product__add-to-cart-error"
@@ -233,6 +236,124 @@ export default defineComponent({
   },
 });
 </script>
+<style>
+.product {
+  display: block !important;
+  width: 100%;
+  float: left;
+  padding-top: 70px;
+  /* background: blue; */
+}
+.product .loading--product-gallery {
+  width: 40%;
+  float: left;
+  /* background: green; */
+  padding-top: 0px !important;
+}
+.product .product__info {
+  max-width: 55% !important;
+  float: left;
+  padding-left: 55px !important;
+  /* background: aqua; */
+}
+.product .sf-gallery.product__gallery {
+    display: block;
+}
+.product .sf-gallery__thumbs {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap:10px;
+}
+.product .sf-gallery__thumbs button {
+    height: 122px !important;
+    max-width: 122px !important;
+}
+.product .sf-gallery__thumbs button img {
+  width: 100%;
+}
+.product .sf-gallery__stage {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 5px;
+}
+.product .sf-gallery__stage .sf-image--wrapper.sf-gallery__big-image {
+  background-color: #fff;
+}
+.product .sf-gallery__stage .sf-image {
+  width: 100%;
+  object-fit: contain;
+}
+.product .product__price-and-rating {
+    align-items: flex-end !important;
+}
+.product h3.sf-heading__title.h3 {
+    color: #a18e11;
+    font-size: 34px;
+    line-height: 44px;
+    font-weight: 600;
+    font-family: 'Montserrat';
+}
+.product span.sf-price__regular {
+    color: #a18e11;
+    font-size: 40px;
+    line-height: 30px;
+    font-weight: 600;
+    font-family: 'Montserrat';
+}
+.product button.sf-button--text.sf-button {
+    font-family: 'Montserrat';
+    color: #a18e11;
+    font-weight: 600;
+}
+.product .product__description p {
+    font-size: 15px;
+    line-height: 25px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+    color: #6d6b5d;
+}
+.product .product__description p span.skutxt {
+    color: #a5a5a5;
+}
+.sf-add-to-cart__select-quantity.sf-quantity-selector {
+    border: 2px solid #a18e11;
+    border-radius: 5px;
+    background: transparent;
+}
+.sf-add-to-cart__select-quantity button.sf-quantity-selector__button:first-child {
+  border-right: 2px solid #a18e11;
+  border-left: 0px solid #a18e11;
+}
+.sf-add-to-cart__select-quantity button.sf-quantity-selector__button {
+  border-left: 2px solid #a18e11;
+  font-size: 30px;
+  color: #a18e11;
+  font-weight: 500;
+  padding-top: 0;
+}
+.sf-input__wrapper input {
+    color: #727272;
+    font-size: 30px;
+    font-weight: 300;
+    font-family: 'Montserrat';
+}
+button.sf-add-to-cart__button.sf-button {
+    background-color: #9f9f9f !important;
+    text-transform: uppercase;
+    border-radius: 5px;
+    font-size: 20px;
+    width: 178px;
+    line-height: 20px;
+    font-weight: 300;
+    font-family: 'Montserrat';
+}
+.sf-add-to-cart.product__add-to-cart {
+    margin-top: 20px !important;
+    margin-left: 0 !important;
+    margin-bottom: 42px !important;
+}
+</style>
 <style lang="scss" scoped>
 @import '../styles.scss';
 </style>
